@@ -1,0 +1,29 @@
+name: Something is wrong
+description: A guide step, the signature builder, the filters or the template builder does not work
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      placeholder: "e.g. guide/02-deliverability.md, the signature builder, build_oft.py"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "Mail service, browser or Python version"

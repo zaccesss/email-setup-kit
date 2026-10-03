@@ -1,0 +1,30 @@
+name: Build Templates
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Check every template builds
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install the builder
+        run: pip install -r outlook/requirements.txt
+
+      - name: Build the templates
+        run: python outlook/build_oft.py

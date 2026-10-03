@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signature Builder</title>
+<style>
+  :root { --ink:#111111; --muted:#3d3d3d; --line:#bdbdbd; --bg:#ffffff; --panel:#f5f5f5; --focus:#1a56db; --warn:#8a1c00; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink:#f2f2f2; --muted:#d4d4d4; --line:#5a5a5a; --bg:#161616; --panel:#232323; --focus:#8ab4ff; --warn:#ffb4a1; } }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.5; margin:0; padding:24px 16px; }
+  main { max-width:980px; margin:0 auto; }
+  h1 { font-size:28px; margin:0 0 4px; }
+  h2 { font-size:20px; margin:28px 0 8px; }
+  p.lead { color:var(--muted); margin:0 0 16px; }
+  .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; }
+  @media (max-width:700px) { .grid { grid-template-columns:1fr; } }
+  label { display:block; font-weight:600; font-size:14px; margin-bottom:4px; }
+  input { width:100%; box-sizing:border-box; font-size:16px; padding:8px 10px; border:2px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); }
+  input[type="color"] { padding:2px; height:42px; }
+  input:focus-visible, button:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+  .hint { font-size:13px; color:var(--muted); margin-top:2px; }
+  .warn { color:var(--warn); font-weight:600; font-size:14px; min-height:20px; }
+  .frame { background:#ffffff; border:2px dashed #888888; padding:16px; border-radius:8px; overflow-x:auto; }
+  button { margin-top:10px; font-size:15px; padding:8px 14px; border-radius:6px; border:2px solid var(--ink); background:var(--ink); color:var(--bg); cursor:pointer; }
+  .done { margin-left:10px; font-size:14px; font-weight:600; }
+  pre { white-space:pre-wrap; margin:0; font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#111111; }
+</style>
+</head>
+<body>
+<main>
+<h1>Signature builder</h1>
+<p class="lead">Fill in your details. The previews update as you type. Copy a signature and paste it into Gmail (Settings, Signature) or Outlook (Settings, Account, Signatures). Nothing you type leaves this page.</p>
+
+<form id="f" class="grid" onsubmit="return false">
+  <div><label for="name">Name</label><input id="name" value="Your Name"></div>
+  <div><label for="pronouns">Pronouns (optional)</label><input id="pronouns" placeholder="she/her"></div>
+  <div><label for="role">Role or title</label><input id="role" value="Your role"></div>
+  <div><label for="org">Organisation or line two (optional)</label><input id="org" value="Organisation"></div>
+  <div><label for="place">Location (optional)</label><input id="place" placeholder="City, Country"></div>
+  <div><label for="website">Website</label><input id="website" value="https://example.com"></div>
+  <div><label for="linkedin">LinkedIn (optional)</label><input id="linkedin" placeholder="https://www.linkedin.com/in/you"></div>
+  <div><label for="github">GitHub (optional)</label><input id="github" placeholder="https://github.com/you"></div>
+  <div><label for="booking">Booking link (optional)</label><input id="booking" placeholder="https://outlook.office.com/bookwithme/..."></div>
+  <div><label for="logo">Logo image address (optional)</label><input id="logo" placeholder="https://example.com/logo.png"><div class="hint">A PNG at a public address, about 128 by 128 pixels. Mail clients cannot show SVG.</div></div>
+  <div><label for="logoalt">Logo description</label><input id="logoalt" value="Organisation logo"><div class="hint">Read aloud by screen readers.</div></div>
+  <div><label for="accent">Accent colour</label><input id="accent" type="color" value="#1f4fa3"><div class="warn" id="contrast" aria-live="polite"></div></div>
+</form>
+
+<h2>Full signature</h2>
+<div class="frame"><div id="full"></div></div>
+<button type="button" data-copy="full">Copy full signature</button><span class="done" aria-live="polite"></span>
+
+<h2>Short reply signature</h2>
+<div class="frame"><div id="short"></div></div>
+<button type="button" data-copy="short">Copy short signature</button><span class="done" aria-live="polite"></span>
+
+<h2>Plain text (for phone apps)</h2>
+<div class="frame"><pre id="plain"></pre></div>
+<button type="button" data-copy="plain" data-text="1">Copy plain text</button><span class="done" aria-live="polite"></span>
+</main>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var host = function (u) { return u.replace(/^https?:\/\//, '').replace(/\/$/, ''); };
+
+  // WCAG relative luminance, used to warn before a low-contrast accent ships
+  function lum(hex) {
+    var v = [1, 3, 5].map(function (i) {
+      var c = parseInt(hex.substr(i, 2), 16) / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+  }
+  function ratio(hex) { return 1.05 / (lum(hex) + 0.05); }
+
+  function links(v, a) {
+    var L = 'color:' + a + ';text-decoration:underline;';
+    var out = [];
+    if (v.website) out.push('<a href="' + esc(v.website) + '" style="' + L + '">' + esc(host(v.website)) + '</a>');
+    if (v.linkedin) out.push('<a href="' + esc(v.linkedin) + '" style="' + L + '">LinkedIn</a>');
+    if (v.github) out.push('<a href="' + esc(v.github) + '" style="' + L + '">GitHub</a>');
+    return out.join(' &nbsp;|&nbsp; ');
+  }
+
+  function render() {
+    var v = {};
+    ['name','pronouns','role','org','place','website','linkedin','github','booking','logo','logoalt','accent'].forEach(function (k) { v[k] = $(k).value.trim(); });
+    var a = v.accent || '#1f4fa3';
+    var r = ratio(a);
+    $('contrast').textContent = r < 4.5 ? 'This colour is hard to read on white (contrast ' + r.toFixed(1) + ':1). Choose a darker one.' : '';
+    var nm = '<span style="font-size:16px;font-weight:bold;color:#111111;">' + esc(v.name) + '</span>' + (v.pronouns ? ' <span style="font-size:14px;color:#444444;">(' + esc(v.pronouns) + ')</span>' : '');
+    var line = function (t, size) { return t ? '<div style="font-size:' + size + 'px;color:#333333;line-height:19px;">' + esc(t) + '</div>' : ''; };
+    var book = v.booking ? '<div style="font-size:13px;line-height:22px;padding-top:4px;"><a href="' + esc(v.booking) + '" style="color:' + a + ';text-decoration:underline;font-weight:bold;">Book a meeting</a></div>' : '';
+    var text = '<div style="line-height:22px;">' + nm + '</div>' + line(v.role, 13) + line(v.org, 13) + line(v.place, 12) +
+      '<div style="font-size:13px;line-height:20px;padding-top:4px;">' + links(v, a) + '</div>' + book;
+    var logo = v.logo ? '<td style="padding:0 14px 0 0;vertical-align:middle;"><img src="' + esc(v.logo) + '" width="64" height="64" alt="' + esc(v.logoalt) + '" style="display:block;border:0;width:64px;height:64px;"></td>' : '';
+    $('full').innerHTML = '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;"><tr>' + logo +
+      '<td style="padding:2px 0 2px 14px;border-left:3px solid ' + a + ';vertical-align:middle;">' + text + '</td></tr></table>';
+    $('short').innerHTML = '<div style="font-family:Arial,Helvetica,sans-serif;">' + '<div style="line-height:22px;">' + nm + '</div>' + line(v.role, 13) +
+      '<div style="font-size:13px;line-height:20px;">' + links(v, a) + '</div></div>';
+    $('plain').textContent = [v.name + (v.pronouns ? ' (' + v.pronouns + ')' : ''), v.role, v.org, v.place,
+      [v.website, v.linkedin, v.github].filter(Boolean).map(host).join(' | ')].filter(Boolean).join('\n');
+  }
+
+  document.querySelectorAll('#f input').forEach(function (i) { i.addEventListener('input', render); });
+  document.querySelectorAll('button[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var el = $(b.dataset.copy), msg = b.nextElementSibling;
+      if (b.dataset.text) {
+        navigator.clipboard.writeText(el.textContent).then(function () { msg.textContent = 'Copied'; }, function () { msg.textContent = 'Select the box and press Cmd+C'; });
+        return;
+      }
+      var range = document.createRange(); range.selectNode(el);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      var ok = document.execCommand('copy'); sel.removeAllRanges();
+      msg.textContent = ok ? 'Copied' : 'Select the box and press Cmd+C';
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

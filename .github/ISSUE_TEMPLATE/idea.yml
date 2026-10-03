@@ -1,0 +1,15 @@
+name: Idea or addition
+description: A new guide section, gotcha, template or builder improvement
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What you would like added
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it helps
