@@ -19,20 +19,25 @@ In Google Workspace a domain can be added in two ways:
 
 ## Planning the addresses
 
-Create aliases once on the primary domain. They then appear on every alias domain. A small, clear
-set covers most needs:
+Create aliases once on the primary domain. They then appear on every alias domain. Standard role
+addresses cover most needs:
 
-| Alias | Typical use |
+| Address | Use |
 | --- | --- |
-| `contact@` | The public address on a website or in a repository |
-| `hello@` | A friendlier public address |
-| `support@` | Help requests |
-| `dev@` | Technical and developer mail |
+| `contact@` | The main public address on a website or in a repository |
+| `hello@` or `info@` | A friendlier general address. Pick one, not both |
+| `support@` | Help requests from customers or users |
+| `billing@` | Invoices and payments |
+| `security@` | Vulnerability reports. Pair it with a `security.txt` file on your website |
+| `privacy@` | Data protection and privacy requests |
+| `postmaster@` | Expected by mail standards for delivery problems. Every domain should have one |
+| `abuse@` | Expected for spam and abuse reports |
+| `no-reply@` | The sender for automated mail. Give it a reply-to that reaches a person |
 | `team@` | Reaching everyone involved in a project |
-| `newsletter@` | Replies to a newsletter |
-| `no-reply@` | The sender for automated mail. Give it a reply-to of `support@` so replies still reach someone |
-| `code@` | Commit email for Git, kept separate from personal mail |
-| `orders@` and `account@` | Sign-ups and purchases, so they are easy to filter |
+
+> [!TIP]
+> For sign-ups and shopping, use plus-addressing instead of new aliases: `you+shop@example.com`
+> arrives in your normal inbox and is easy to filter. Gmail and Microsoft 365 both support it.
 
 > [!TIP]
 > Before deleting an alias, search the inbox for mail sent to it. An address you no longer use may

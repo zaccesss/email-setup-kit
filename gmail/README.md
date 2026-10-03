@@ -5,6 +5,7 @@
 | Placeholder | Replace with |
 | --- | --- |
 | `you.example` | Your personal domain |
+| `you+shop` and `you+accounts` | Your own plus-addresses for shopping and sign-ups |
 | `brand.example` | A brand or project domain. Copy the Brand block for each extra domain |
 | `your-org` | A GitHub organisation name. Copy that filter for each organisation |
 
