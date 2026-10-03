@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+<title>Mail Filters</title>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1000</id><content></content>
+  <apps:property name='to' value="contact@you.example OR hello@you.example"/>
+  <apps:property name='label' value="Personal/Enquiries"/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1001</id><content></content>
+  <apps:property name='to' value="account@you.example"/>
+  <apps:property name='label' value="Personal/Accounts"/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1002</id><content></content>
+  <apps:property name='to' value="orders@you.example"/>
+  <apps:property name='label' value="Personal/Orders"/>
+  <apps:property name='shouldStar' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1003</id><content></content>
+  <apps:property name='to' value="no-reply@you.example OR newsletter@you.example"/>
+  <apps:property name='label' value="Personal/Automated"/>
+  <apps:property name='shouldArchive' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1004</id><content></content>
+  <apps:property name='to' value="contact@brand.example OR hello@brand.example OR info@brand.example"/>
+  <apps:property name='label' value="Brand/Enquiries"/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1005</id><content></content>
+  <apps:property name='to' value="support@brand.example"/>
+  <apps:property name='label' value="Brand/Support"/>
+  <apps:property name='shouldNeverSpam' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1006</id><content></content>
+  <apps:property name='to' value="dev@brand.example"/>
+  <apps:property name='label' value="Brand/Dev"/>
+  <apps:property name='shouldNeverSpam' value='true'/>
+  <apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1007</id><content></content>
+  <apps:property name='to' value="team@brand.example"/>
+  <apps:property name='label' value="Brand/Team"/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1008</id><content></content>
+  <apps:property name='to' value="no-reply@brand.example"/>
+  <apps:property name='label' value="Brand/Automated"/>
+  <apps:property name='shouldArchive' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1009</id><content></content>
+  <apps:property name='from' value="notifications@github.com"/>
+  <apps:property name='subject' value="your-org"/>
+  <apps:property name='doesNotHaveTheWord' value='"because you were mentioned" OR "because your review was requested" OR "because you were assigned"'/>
+  <apps:property name='label' value="GitHub/your-org"/>
+  <apps:property name='shouldArchive' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1010</id><content></content>
+  <apps:property name='from' value="notifications@github.com"/>
+  <apps:property name='doesNotHaveTheWord' value='subject:your-org OR "because you were mentioned" OR "because your review was requested" OR "because you were assigned"'/>
+  <apps:property name='label' value="GitHub/Personal"/>
+  <apps:property name='shouldArchive' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1011</id><content></content>
+  <apps:property name='from' value="notifications@github.com"/>
+  <apps:property name='hasTheWord' value='"because you were mentioned" OR "because your review was requested" OR "because you were assigned"'/>
+  <apps:property name='label' value="GitHub/Needs you"/>
+  <apps:property name='shouldNeverSpam' value='true'/>
+  <apps:property name='shouldAlwaysMarkAsImportant' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1012</id><content></content>
+  <apps:property name='subject' value='"Report domain"'/>
+  <apps:property name='label' value="Reports/DMARC"/>
+  <apps:property name='shouldArchive' value='true'/>
+  <apps:property name='shouldMarkAsRead' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+<entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1013</id><content></content>
+  <apps:property name='hasTheWord' value="receipt OR invoice OR payment"/>
+  <apps:property name='label' value="Receipts"/>
+  <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
+</feed>
