@@ -6,6 +6,7 @@ All notable changes are recorded here. The format follows Keep a Changelog with 
 
 ### Added
 
+- A Dependabot config that checks the GitHub Actions and the builder dependency weekly.
 - A guide comparing Gmail, Outlook, Apple Mail, Proton Mail and Fastmail: organising mail, filters,
   plus-addressing, signatures, how HTML renders and templates.
 - Guides for choosing a setup, a free forwarding setup, migration, sending services and newsletters,
