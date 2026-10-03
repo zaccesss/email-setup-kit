@@ -32,6 +32,7 @@ Work through [CHECKLIST.md](CHECKLIST.md). The guides can also be read in order:
 | 10 | [Security](guide/10-security.md) | Accounts, domains, MTA-STS, TLS-RPT and BIMI |
 | 11 | [DNS reference](guide/11-dns-reference.md) | Every record in one table |
 | 12 | [Inbox habits](guide/12-inbox-habits.md) | Daily habits, out-of-office, phones and teams |
+| 13 | [How providers differ](guide/13-provider-differences.md) | Gmail, Outlook, Apple Mail, Proton Mail and Fastmail compared, including how HTML renders |
 
 > [!TIP]
 > Replace every `example.com` and `Your Name` with your own details. The builder page and the filter
