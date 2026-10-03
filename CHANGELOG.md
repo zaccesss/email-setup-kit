@@ -6,6 +6,8 @@ All notable changes are recorded here. The format follows Keep a Changelog with 
 
 ### Added
 
+- A guide comparing Gmail, Outlook, Apple Mail, Proton Mail and Fastmail: organising mail, filters,
+  plus-addressing, signatures, how HTML renders and templates.
 - Guides for choosing a setup, a free forwarding setup, migration, sending services and newsletters,
   security, a DNS reference and inbox habits including teams. A setup checklist linking each step to
   its guide.

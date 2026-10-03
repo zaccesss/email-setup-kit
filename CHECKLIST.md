@@ -5,6 +5,7 @@ Work through it top to bottom. Each line links to the guide that explains it.
 ## Domain and provider
 
 - [ ] Choose a setup: hosted mailbox, forwarding or both ([choosing a setup](guide/00-choosing-a-setup.md))
+- [ ] Check what your provider and apps support ([how providers differ](guide/13-provider-differences.md))
 - [ ] Turn on registrar lock, auto-renew and two-step verification at the registrar ([security](guide/10-security.md))
 - [ ] Add and verify the domain with the provider ([domains](guide/01-domains.md))
 - [ ] Add extra domains as alias domains where the provider supports it ([domains](guide/01-domains.md))
