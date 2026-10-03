@@ -22,7 +22,7 @@ Nested labels keep the sidebar short. A label named `Brand/Support` sits under `
 
 | Group | Example sub-labels |
 | --- | --- |
-| Personal | Enquiries, Accounts, Orders, Automated |
+| Personal | Enquiries, Sign-ups, Shopping, Automated |
 | Each brand | Enquiries, Support, Dev, Team, Newsletter, Automated, Other |
 | GitHub | One per organisation, plus Needs you |
 | Reports | DMARC |

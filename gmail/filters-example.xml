@@ -2,16 +2,16 @@
 <feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
 <title>Mail Filters</title>
 <entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1000</id><content></content>
-  <apps:property name='to' value="contact@you.example OR hello@you.example"/>
+  <apps:property name='to' value="contact@you.example OR hello@you.example OR info@you.example"/>
   <apps:property name='label' value="Personal/Enquiries"/>
   <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
 <entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1001</id><content></content>
-  <apps:property name='to' value="account@you.example"/>
-  <apps:property name='label' value="Personal/Accounts"/>
+  <apps:property name='to' value="you+accounts@you.example"/>
+  <apps:property name='label' value="Personal/Sign-ups"/>
   <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
 <entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1002</id><content></content>
-  <apps:property name='to' value="orders@you.example"/>
-  <apps:property name='label' value="Personal/Orders"/>
+  <apps:property name='to' value="you+shop@you.example"/>
+  <apps:property name='label' value="Personal/Shopping"/>
   <apps:property name='shouldStar' value='true'/>
   <apps:property name='sizeOperator' value='s_sl'/><apps:property name='sizeUnit' value='s_smb'/></entry>
 <entry><category term='filter'></category><title>Mail Filter</title><id>tag:mail.google.com,2008:filter:1003</id><content></content>
