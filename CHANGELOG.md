@@ -2,6 +2,12 @@
 
 All notable changes are recorded here. The format follows Keep a Changelog with date based entries.
 
+## Unreleased
+
+## 0.0.1 - 2026-10-22
+
+- First tagged release of the kit.
+
 ## 2026-10-03
 
 ### Added
