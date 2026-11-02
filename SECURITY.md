@@ -20,7 +20,7 @@ It runs no service. In scope:
 > [!IMPORTANT]
 > Report privately, never in a public issue. Use
 > [GitHub private vulnerability reporting](https://github.com/zaccesss/email-setup-kit/security/advisories/new)
-> or email contact@isaacadjei.me with details and reproduction steps. Expect an acknowledgement
+> or email security@isaacadjei.me with details and reproduction steps. Expect an acknowledgement
 > within a few days.
 
 ## The shared policy
