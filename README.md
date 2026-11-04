@@ -1,5 +1,10 @@
 # email-setup-kit
 
+[![Build Templates](https://github.com/zaccesss/email-setup-kit/actions/workflows/build-templates.yml/badge.svg)](https://github.com/zaccesss/email-setup-kit/actions/workflows/build-templates.yml)
+[![Markdown Lint](https://github.com/zaccesss/email-setup-kit/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/zaccesss/email-setup-kit/actions/workflows/markdownlint.yml)
+[![Release](https://img.shields.io/github/v/release/zaccesss/email-setup-kit?label=release)](https://github.com/zaccesss/email-setup-kit/releases/latest)
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-green.svg)](LICENSE)
+
 A complete guide to setting up email on your own domain: choosing a provider, DNS that passes SPF,
 DKIM and DMARC, moving from an old provider, security, inbox organisation, accessible signatures and
 Outlook templates built from code.
@@ -37,6 +42,21 @@ Work through [CHECKLIST.md](CHECKLIST.md). The guides can also be read in order:
 > [!TIP]
 > Replace every `example.com` and `Your Name` with your own details. The builder page and the filter
 > file have them in obvious places.
+
+## How the pieces fit
+
+One message leaving your domain and what each guide covers along the way:
+
+```mermaid
+flowchart LR
+    YOU["You, in Gmail or Outlook<br/>signature and templates, guides 3 to 5"] --> OUT["Your provider's outgoing server<br/>signs the message with DKIM"]
+    OUT --> RX["The receiving server"]
+    RX -- "looks up" --> DNS["Your domain's DNS, guides 2 and 11<br/>SPF record, DKIM key, DMARC policy"]
+    RX --> VERDICT{"SPF or DKIM passes<br/>and aligns with the From domain?"}
+    VERDICT -- "yes" --> INBOX["Inbox<br/>filters and labels, guides 3 and 12"]
+    VERDICT -- "no" --> POLICY["Your DMARC policy decides<br/>quarantine or reject"]
+    RX -. "aggregate reports" .-> YOU
+```
 
 ## Building Outlook templates
 

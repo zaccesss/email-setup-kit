@@ -4,9 +4,16 @@ All notable changes are recorded here. The format follows Keep a Changelog with 
 
 ## Unreleased
 
+## 0.1.0 - 2026-11-03
+
+### Added
+
+- A badge row and a diagram of how a message passes SPF, DKIM and DMARC on its way to an inbox.
+
 ### Changed
 
 - Community files follow the [AI policy](https://github.com/zaccesss/ai-policy): pull requests declare AI use and issue forms ask whether AI helped. Security reports go to security@isaacadjei.me.
+- Routine tidy-up.
 
 ## 0.0.1 - 2026-10-22
 
